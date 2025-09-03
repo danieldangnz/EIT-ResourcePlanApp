@@ -17,4 +17,4 @@ jobs:
       - name: Copy .env for GitHub Actions
         run: cp .env.test .env
       - name: Run tests
-        run: ./vendor/bin/phpunit
+        run: php artisan test --verbose
