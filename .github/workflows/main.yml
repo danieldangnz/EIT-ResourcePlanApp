@@ -14,13 +14,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'
-      - name: Create database
-        run: touch ./dabase/database.sqlite
       - name: Copy .env for GitHub Actions
         run: cp .env.test .env
-      - name: Install app
-        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-      - name: Run migrations
-        run: php artisan migrate --force  
       - name: Run tests
         run: ./vendor/bin/phpunit
