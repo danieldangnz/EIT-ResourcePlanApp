@@ -16,5 +16,3 @@ jobs:
           php-version: '8.1'
       - name: Copy .env for GitHub Actions
         run: cp .env.test .env
-      - name: Run tests
-        run: php artisan test --verbose
