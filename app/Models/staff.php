@@ -2,9 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class staff extends Model
+class Staff extends Model
 {
-    protected $fillable = ['staff_name', 'staff_code'];
+    use HasFactory;
+
+    protected $fillable = [
+        'staff_name',
+        'staff_code',
+    ];
 }
