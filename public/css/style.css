@@ -155,3 +155,70 @@ footer {
     border: 1px solid #000000;
     padding: 0.5rem;
 }
+
+.programmesTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background: white;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+.programmesTable th, .programmesTable td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+}
+
+.programmesTable thead {
+    background-color: #1f2937;
+    color: white;
+}
+
+.programmesTable tbody tr:nth-child(even) {
+    background-color: #f3f4f6;
+}
+
+.programmesTable tbody tr:hover {
+    background-color: #e5e7eb;
+}
+
+.programmesTable button {
+    padding: 0.4rem 0.8rem;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.1s, opacity 0.2s;
+}
+
+.programmesTable .deleteBtn {
+    background-color: #dc2626;
+}
+
+.programmesTable .deleteBtn:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
+.programmesTable .editBtn {
+    background-color: #16a34a;
+}
+
+.programmesTable .editBtn:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
+.programmesTable td form, .programmesTable td a {
+    display: flex;
+    justify-content: center;
+}
+
+.programmesTable td form button, .programmesTable td a button {
+    margin: -0.5rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}

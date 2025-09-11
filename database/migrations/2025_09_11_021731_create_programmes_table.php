@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('programmes', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('base_code', 10);
+            $table->string('region', 3);
+            $table->string('start_month', 20);
             $table->timestamps();
         });
     }

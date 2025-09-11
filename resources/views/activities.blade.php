@@ -2,36 +2,67 @@
 @include('navbar')
 
 @auth
-    <main>
-        <h1>Activity List</h1>
+<main>
+    <h1>Activity List</h1>
 
-        <table class="activityListTable">
-            <thead>
+    <!-- Add Activity Form -->
+    <h2>Add Activity</h2>
+    <form action="{{route('activities.store')}}" method="POST" style="margin-bottom: 2rem;">
+        @csrf
+        <input type="text" name="course_name" placeholder="Course Name" maxlength="100" required>
+        <input type="text" name="base_code" placeholder="Base Code" maxlength="10" required>
+        <input type="text" name="campus" placeholder="Campus" maxlength="50" required>
+        <input type="text" name="intake_month" placeholder="Intake Month" maxlength="20" required>
+        <select name="for_programme" required>
+            <option value="">-- 1 Course for Programme? --</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+        <button type="submit" class="editBtn">Add Activity</button>
+    </form>
+
+    @if(session('success'))
+        <p style="color:green;">{{session('success')}}</p>
+    @endif
+
+    <!-- Activity Table -->
+    <table class="programmesTable">
+        <thead>
+            <tr>
+                <th>Course Name</th>
+                <th>Base Code</th>
+                <th>Campus</th>
+                <th>Intake Month</th>
+                <th>1 Course for Programme</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($activities as $activity)
                 <tr>
-                    <th>Course Name</th>
-                    <th>Base Code</th>
-                    <th>Campus</th>
-                    <th>Intake Month</th>
-                    <th>1 Course for Programme</th>
-                    <th style="background-color:#dc2626; color:white;">Delete</th>
-                    <th style="background-color:#16a34a; color:white;">Save</th>
-                    <th style="background-color:#2563eb; color:white;">See Activities</th>
+                    <td>{{ $activity->course_name }}</td>
+                    <td>{{ $activity->base_code }}</td>
+                    <td>{{ $activity->campus }}</td>
+                    <td>{{ $activity->intake_month }}</td>
+                    <td>{{ $activity->for_programme }}</td>
+                    <td>
+                        <form action="{{route('activities.delete', $activity->id)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="deleteBtn">Delete</button>
+                        </form>
+                    </td>
+                    <td>
+                        <a href="{{ route('activities.edit', $activity->id) }}">
+                            <button type="button" class="editBtn">Edit</button>
+                        </a>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Introduction to an Activity</td>
-                    <td>ACT101</td>
-                    <td>EIT</td>
-                    <td>Jan</td>
-                    <td>Yes</td>
-                    <td style="text-align:center;"><button>Delete</button></td>
-                    <td style="text-align:center;"><button>Save</button></td>
-                    <td style="text-align:center;"><button>See</button></td>
-                </tr>
-            </tbody>
-        </table>   
-    </main>
+            @endforeach
+        </tbody>
+    </table>
+</main>
 @else
     @php
         header("Location: /login");
