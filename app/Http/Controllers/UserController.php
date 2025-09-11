@@ -67,7 +67,7 @@ class UserController extends Controller
         if (auth()->check() && auth()->user()->role == '1') {
             return view('dashboard');
         } else {
-            return redirect('/login');
+            return redirect()->back();
         }
     }
 

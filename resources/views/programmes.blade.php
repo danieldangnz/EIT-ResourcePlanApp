@@ -2,7 +2,6 @@
 @include('navbar')
 
 @auth
-
     <main>
         <h1>Programmes</h1>
 
@@ -30,7 +29,6 @@
             </tbody>
         </table>
     </main>
-
 @else
     @php
         header("Location: /login");

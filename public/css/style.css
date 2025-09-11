@@ -31,8 +31,7 @@ body {
     font-weight: bold;
 }
 
-.headerButtons a.headerBtn,
-.headerButtons button.headerBtn {
+.headerButtons a.headerBtn, .headerButtons button.headerBtn {
     padding: 0.5rem 1rem;
     background: #374151;
     color: white;
@@ -50,8 +49,7 @@ body {
     justify-content: center;
 }
 
-.headerButtons a.headerBtn:hover,
-.headerButtons button.headerBtn:hover {
+.headerButtons a.headerBtn:hover, .headerButtons button.headerBtn:hover {
     background: #2563eb;
     transform: translateY(-2px);
 }

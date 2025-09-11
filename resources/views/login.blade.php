@@ -10,7 +10,7 @@
                 <input name="name" type="text" placeholder="Name"><br>
                 <input name="email" type="text" placeholder="Email"><br>
                 <input name="password" type="password" placeholder="Password"><br>
-                <input name="school" type="text" placeholder="School" value="{{ old('school') }}"><br>
+                <input name="school" type="text" placeholder="School" value="{{old('school')}}"><br>
                 <button>Register</button>
             </form>
         </div>
