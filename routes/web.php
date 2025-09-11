@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProgrammeController;
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\staffController;
 
 Route::get('/', function () {
     return view('dashboard');
@@ -25,6 +26,13 @@ Route::post('/programmes', [ProgrammeController::class, 'store'])->name('program
 Route::get('/programmes/{programme}/edit', [ProgrammeController::class, 'edit'])->name('programmes.edit');
 Route::put('/programmes/{programme}', [ProgrammeController::class, 'update'])->name('programmes.update');
 Route::delete('/programmes/{programme}', [ProgrammeController::class, 'delete'])->name('programmes.delete');
+
+Route::get('/staff', [staffController::class, 'index'])->name('staffmem');
+Route::post('/staff', [staffController::class, 'store'])->name('staff.store');
+Route::get('/staff/{staffmem}/edit', [staffController::class, 'edit'])->name('staff.edit');
+Route::put('/staff/{staffmem}', [staffController::class, 'update'])->name('staff.update');
+Route::delete('/staff/{staffmem}', [staffController::class, 'delete'])->name('staff.delete');
+
 
 Route::get('/activities', [ActivityController::class, 'index'])->name('activities');
 Route::post('/activities/store', [ActivityController::class, 'store'])->name('activities.store');

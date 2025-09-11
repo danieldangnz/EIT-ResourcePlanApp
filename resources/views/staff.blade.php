@@ -4,11 +4,14 @@
 @auth 
     <main>
         <h1>Staff</h1>
-
+        <h2>Add a new staff member</h2>
         <div style="margin-bottom: 1rem; display: flex; gap: 0.5rem;">
-            <button class="staffBtn" style="background-color: #16A34A;">Add</button>
-            <button class="staffBtn" style="background-color: #2563EB">Edit</button>
-            <button class="staffBtn" style="background-color: #DC2626">Remove</button>
+            <form action="{{ route('staff.store') }}" method="POST" style="margin-bottom: 2rem;">
+                @csrf
+                <input type="text" name="staff_name" placeholder="Staff name" maxlength="50" required>
+                <input type="text" name="staff_code" placeholder="Staff Code" maxlength="10" required>
+            <button class="staffBtn" style="background-color: #16A34A;" type='submit'>Add</button>
+            </form>
         </div>
 
         <div style="margin-bottom: 1rem;">
@@ -16,24 +19,36 @@
             <button class="searchBtn">Search</button>
         </div>
 
-        <table border="1" cellpadding="8" cellspacing="0" style="width: 100%; border-collapse: collapse;">
-            <thead>
+        <table class="programmesTable">
+        <thead>
+            <tr>
+                <th>Staff Member Name</th>
+                <th>Staff Code</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($staffmem as $staff)
                 <tr>
-                    <th style="width:1%;">ID</th>
-                    <th style="width:30%;">Name</th>
-                    <th style="width:15%;">Staff Code</th>
-                    <th style="width:15%;">Campus</th>
+                    <td>{{ $staff->staff_name }}</td>
+                    <td>{{ $staff->staff_code }}</td>
+                    <td>
+                        <form action="{{ route('staff.delete', $staff->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="deleteBtn">Delete</button>
+                        </form>
+                    </td>
+                    <td>
+                        <a href="{{ route('staff.edit', $staff->id) }}">
+                            <button class="editBtn">Edit</button>
+                        </a>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>John</td>
-                    <td>ddfdsfda</td>
-                    <td>EIT</td>
-                </tr>
-            </tbody>
-        </table>
+            @endforeach
+        </tbody>
+    </table>
     </main>
 @else
     @php
