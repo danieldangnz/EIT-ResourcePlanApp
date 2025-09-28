@@ -6,7 +6,7 @@
         <h1>Staff</h1>
         <h2>Add a new staff member</h2>
         <div style="margin-bottom: 1rem; display: flex; gap: 0.5rem;">
-            <form action="{{ route('staff.store') }}" method="POST" style="margin-bottom: 2rem;">
+            <form action="{{route('staff.store')}}" method="POST" style="margin-bottom: 2rem;">
                 @csrf
                 <input type="text" name="staff_name" placeholder="Staff name" maxlength="50" required>
                 <input type="text" name="staff_code" placeholder="Staff Code" maxlength="10" required>
@@ -14,9 +14,13 @@
             </form>
         </div>
 
+        <!-- Search bar -->
         <div style="margin-bottom: 1rem;">
-            <input class="searchbar" type="text" placeholder="Search">
-            <button class="searchBtn">Search</button>
+            <form action="{{route('staffmem')}}" method="GET" style="margin-bottom:1rem;">
+                <input class="searchbar" type="text" name="query" placeholder="Search staff" value="{{request('query')}}">
+                <button class="searchBtn" type="submit">Search</button>
+                <a href="{{route('staffmem')}}"><button type="button" class="searchBtn">View All</button></a>
+            </form>
         </div>
 
         <table class="programmesTable">

@@ -3,7 +3,7 @@
 
 @auth
 <main>
-    <h1>Edit Programme</h1>
+    <h1>Edit Staff</h1>
 
     <form action="{{ route('staff.update', $staff->id) }}" method="POST" style="margin-bottom: 2rem;">
         @csrf

@@ -6,9 +6,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\staff;
 
-class staffController extends Controller {
-    public function index() {
-        $staffmem = staff::all();
+class StaffController extends Controller {
+    public function index(Request $request) {
+        $query = $request->input('query');
+
+        $staffmem = \App\Models\Staff::query()
+            ->when($query, function ($q, $query) {
+                return $q->where('staff_name', 'like', "%{$query}%")
+                        ->orWhere('staff_code', 'like', "%{$query}%");
+            })
+            ->get();
+
         return view('staff', compact('staffmem'));
     }
 
