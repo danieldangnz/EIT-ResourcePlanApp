@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProgrammeController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\ReportController;
 
 Route::get('/', function () {
     return view('dashboard');
@@ -33,9 +34,10 @@ Route::get('/staff/{staffmem}/edit', [staffController::class, 'edit'])->name('st
 Route::put('/staff/{staffmem}', [staffController::class, 'update'])->name('staff.update');
 Route::delete('/staff/{staffmem}', [staffController::class, 'delete'])->name('staff.delete');
 
-
 Route::get('/activities', [ActivityController::class, 'index'])->name('activities');
 Route::post('/activities/store', [ActivityController::class, 'store'])->name('activities.store');
 Route::delete('/activities/delete/{id}', [ActivityController::class, 'delete'])->name('activities.delete');
 Route::get('/activities/edit/{id}', [ActivityController::class, 'edit'])->name('activities.edit');
 Route::put('/activities/update/{id}', [ActivityController::class, 'update'])->name('activities.update');
+
+Route::get('/reports', [ReportController::class, 'index'])->name('reports');

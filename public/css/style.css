@@ -83,7 +83,9 @@ nav {
 
 .navbar li a {
     display: block;
-    padding: 0.75rem 1rem;
+    width: 150px;
+    text-align: center;
+    padding: 0.75rem 0;
     color: white;
     text-decoration: none;
     border-radius: 6px;
