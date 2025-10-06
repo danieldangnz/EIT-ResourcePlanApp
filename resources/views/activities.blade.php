@@ -29,7 +29,7 @@
     <table class="programmesTable">
         <thead>
             <tr>
-                <th>Course Name</th>
+                <th>Activity Name</th>
                 <th>Base Code</th>
                 <th>Campus</th>
                 <th>Intake Month</th>

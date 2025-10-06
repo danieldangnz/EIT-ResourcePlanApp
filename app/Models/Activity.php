@@ -16,4 +16,8 @@ class Activity extends Model
         'intake_month',
         'for_programme',
     ];
+
+    public function course() {
+        return $this->belongsTo(Course::class);
+    }
 }

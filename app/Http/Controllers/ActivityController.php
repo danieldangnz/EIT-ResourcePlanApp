@@ -13,29 +13,25 @@ class ActivityController extends Controller
     }
 
     public function store(Request $request) {
-        $validated = $request->validate([
-            'course_name' => 'required|string|max:100',
-            'base_code' => 'required|string|max:10',
-            'campus' => 'required|string|max:50',
-            'intake_month' => 'required|string|max:20',
-            'for_programme' => 'required|in:Yes,No',
+        $validated = Activity::create([
+            'course_name' => $request->course_name,
+            'base_code' => $request->base_code,
+            'campus' => $request->campus,
+            'intake_month' => $request->intake_month,
+            'for_programme' => $request->for_programme,
+            'course_id' => $request->course_id,
         ]);
 
-        // Create new activity
-        $activity = Activity::create($validated);
+        Activity::create($validated);
 
-        if ($activity) {
-            return redirect()->back()->with('success', 'Activity added successfully!');
-        } else {
-            return redirect()->back()->with('error', 'Failed to add activity.');
-        }
+        return redirect()->back()->with('success', 'Activity added successfully!');
     }
 
     public function delete($id) {
         $activity = Activity::findOrFail($id);
         $activity->delete();
 
-        return redirect()->back()->with('success', 'Activity successfully delete');
+        return redirect()->back()->with('success', 'Activity successfully deleted');
     }
 
     public function edit($id) {

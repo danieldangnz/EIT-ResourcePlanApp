@@ -15,4 +15,8 @@ class Programme extends Model
         'region',
         'start_month',
     ];
+
+    public function courses(){
+        return $this->hasMany(Course::class);
+    }
 }

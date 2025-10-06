@@ -6,5 +6,6 @@
         <li><a href="{{ url('/staff') }}">Staff</a></li>
         <li><a href="{{ url('/programmes') }}">Programmes</a></li>
         <li><a href="{{ url('/activities') }}">Activities</a></li>
+        <li><a href="{{ url('/courses') }}">Courses</a></li>
     </ul>
 </nav>

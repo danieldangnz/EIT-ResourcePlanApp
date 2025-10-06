@@ -6,10 +6,9 @@ use App\Http\Controllers\ProgrammeController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\CourseController;
 
-Route::get('/', function () {
-    return view('dashboard');
-});
+Route::get('/', function () {return view('dashboard');});
 
 // Show forms
 Route::get('/login', [UserController::class, 'loginForm'])->name('login');
@@ -41,3 +40,10 @@ Route::get('/activities/edit/{id}', [ActivityController::class, 'edit'])->name('
 Route::put('/activities/update/{id}', [ActivityController::class, 'update'])->name('activities.update');
 
 Route::get('/reports', [ReportController::class, 'index'])->name('reports');
+
+Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
+Route::post('/courses', [CourseController::class, 'store'])->name('courses.store');
+Route::get('/courses/{id}/edit', [CourseController::class, 'edit'])->name('courses.edit');
+Route::put('/courses/{course}', [CourseController::class, 'update'])->name('courses.update');
+Route::delete('/courses/{course}', [CourseController::class, 'destroy'])->name('courses.destroy');
+
