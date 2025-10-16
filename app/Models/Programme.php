@@ -7,16 +7,26 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Programme extends Model
 {
-    use HasFactory; 
+    use HasFactory;
 
     protected $fillable = [
+        'section_id',
         'title',
         'base_code',
         'region',
-        'start_month',
+        'intake',
+        'full_prog_code',
+        'campus',
+        'full_desc',
+        'prog_stud_set',
+        'prog1_code',
     ];
 
-    public function courses(){
+    public function courses() {
         return $this->hasMany(Course::class);
+    }
+
+    public function section() {
+        return $this->belongsTo(Section::class, 'section_id', 'SectionID');
     }
 }

@@ -8,13 +8,13 @@
 
     <!-- Add Course Form -->
     <h2>Add Course</h2>
-    <form method="POST" action="{{ route('courses.store') }}" style="margin-bottom: 2rem; max-width: 600px;">
+    <form method="POST" action="{{route('courses.store')}}" style="margin-bottom: 2rem; max-width: 600px;">
         @csrf
 
         <select name="programme_id" required style="width: 100%; margin-bottom: 1rem; padding: 0.5rem;">
             <option value="">-- Choose Programme --</option>
             @foreach($programmes as $programme)
-                <option value="{{ $programme->id }}">{{ $programme->title }} ({{ $programme->base_code }})</option>
+                <option value="{{$programme->id}}">{{$programme->title}} ({{$programme->base_code}})</option>
             @endforeach
         </select>
 
@@ -34,9 +34,7 @@
             <option value="completed">Completed</option>
         </select>
 
-        <button type="submit" class="headerBtn" style="background-color: #3B82F6; margin-top: 0.5rem;">
-            Add Course
-        </button>
+        <button type="submit" class="headerBtn" style="background-color: #3B82F6; margin-top: 0.5rem;">Add Course</button>
     </form>
 
     <!-- Existing Courses Table -->
@@ -58,12 +56,12 @@
         <tbody>
             @forelse($courses as $course)
                 <tr>
-                    <td>{{ $course->programme->title }}</td>
-                    <td>{{ $course->courseCode }}</td>
-                    <td>{{ $course->courseFullCode }}</td>
-                    <td>{{ $course->courseDescription }}</td>
-                    <td>{{ $course->onlyOneCourseForProgramme ? 'Yes' : 'No' }}</td>
-                    <td>{{ ucfirst($course->status) }}</td>
+                    <td>{{$course->programme->title}}</td>
+                    <td>{{$course->courseCode}}</td>
+                    <td>{{$course->courseFullCode}}</td>
+                    <td>{{$course->courseDescription}}</td>
+                    <td>{{$course->onlyOneCourseForProgramme ? 'Yes' : 'No'}}</td>
+                    <td>{{ucfirst($course->status)}}</td>
                     <td>
                         <form action="{{ route('courses.destroy', $course->id) }}" method="POST">
                             @csrf
@@ -83,9 +81,9 @@
                         </button>
 
                         <!-- Activities Modal -->
-                        <div id="activitiesModal-{{ $course->id }}" class="modal" style="display:none; position: fixed; z-index: 1000; left:0; top:0; width:100%; height:100%; overflow:auto; background-color: rgba(0,0,0,0.4);">
+                        <div id="activitiesModal-{{$course->id}}" class="modal" style="display:none; position: fixed; z-index: 1000; left:0; top:0; width:100%; height:100%; overflow:auto; background-color: rgba(0,0,0,0.4);">
                             <div style="background-color: white; margin: 5% auto; padding: 20px; border-radius: 6px; width: 500px; max-height: 80vh; overflow-y:auto; position: relative;">
-                                <h2>Activities for {{ $course->courseCode }}</h2>
+                                <h2>Activities for {{$course->courseCode}}</h2>
                                 <button class="close-modal" style="position:absolute; top:10px; right:10px; background:none; border:none; font-size:18px; cursor:pointer;">&times;</button>
 
                                 @if($course->activities->count() > 0)
@@ -102,11 +100,11 @@
                                         <tbody>
                                             @foreach($course->activities as $activity)
                                                 <tr>
-                                                    <td>{{ $activity->course_name }}</td>
-                                                    <td>{{ $activity->base_code }}</td>
-                                                    <td>{{ $activity->campus }}</td>
-                                                    <td>{{ $activity->intake_month }}</td>
-                                                    <td>{{ $activity->for_programme }}</td>
+                                                    <td>{{$activity->course_name}}</td>
+                                                    <td>{{$activity->base_code}}</td>
+                                                    <td>{{$activity->campus}}</td>
+                                                    <td>{{$activity->intake_month}}</td>
+                                                    <td>{{$activity->for_programme}}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>

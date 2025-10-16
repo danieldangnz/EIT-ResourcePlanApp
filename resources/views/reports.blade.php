@@ -16,7 +16,7 @@
                             </button>
 
                             <!-- All Details Modal -->
-                            <div id="modal-all-{{ $programme->id }}" class="modal" style="display: none; position: fixed; z-index: 1000; left:0; top:0; width:100%; height:100%; overflow:auto; background-color: rgba(0,0,0,0.4);">
+                            <div id="modal-all-{{$programme->id}}" class="modal" style="display: none; position: fixed; z-index: 1000; left:0; top:0; width:100%; height:100%; overflow:auto; background-color: rgba(0,0,0,0.4);">
                                 <div style="background-color: white; margin: 5% auto; padding: 2rem; border-radius: 8px; width: 700px; max-width: 90%; position: relative; box-shadow: 0 4px 12px rgba(0,0,0,0.3); max-height: 80vh; overflow-y: auto;">
                                     <h2 style="margin-top:0; font-size: 1.5rem;">{{$programme->title}} - All Details</h2>
                                     <p style="font-size: 1rem; margin-bottom: 1rem;">Full programme details for <strong>{{$programme->title}}</strong>.</p>
@@ -25,15 +25,15 @@
                                         <ul style="list-style: none; padding-left: 0;">
                                             @foreach($programme->courses as $course)
                                                 <li style="margin-bottom: 1rem; border-left: 2px solid #3B82F6; padding-left: 1rem;">
-                                                    <strong>Course:</strong> {{ $course->courseCode }} - {{ $course->courseFullCode }}<br>
-                                                    <em>{{ $course->courseDescription }}</em>
+                                                    <strong>Course:</strong> {{$course->courseCode}} - {{$course->courseFullCode }}<br>
+                                                    <em>{{$course->courseDescription}}</em>
 
                                                     @if($course->activities->count() > 0)
                                                         <ul style="list-style: none; padding-left: 1rem; margin-top: 0.5rem;">
                                                             @foreach($course->activities as $activity)
                                                                 <li style="border-left: 2px solid #F59E0B; padding-left: 1rem; margin-bottom: 0.25rem;">
-                                                                    <strong>Activity:</strong> {{ $activity->course_name }} ({{ $activity->base_code }})<br>
-                                                                    Campus: {{ $activity->campus }}, Intake: {{ $activity->intake_month }}, For Programme: {{ $activity->for_programme }}
+                                                                    <strong>Activity:</strong> {{$activity->course_name}} ({{$activity->base_code}})<br>
+                                                                    Campus: {{$activity->campus}}, Intake: {{$activity->intake_month}}, For Programme: {{$activity->for_programme}}
                                                                 </li>
                                                             @endforeach
                                                         </ul>
@@ -52,7 +52,7 @@
                             </div>
 
                             <!-- Activity Summary Modal -->
-                            <div id="modal-summary-{{ $programme->id }}" class="modal" style="display: none; position: fixed; z-index: 1000; left:0; top:0; width:100%; height:100%; overflow:auto; background-color: rgba(0,0,0,0.4);">
+                            <div id="modal-summary-{{$programme->id}}" class="modal" style="display: none; position: fixed; z-index: 1000; left:0; top:0; width:100%; height:100%; overflow:auto; background-color: rgba(0,0,0,0.4);">
                                 <div style="background-color: white; margin: 5% auto; padding: 2rem; border-radius: 8px; width: 700px; max-width: 90%; position: relative; box-shadow: 0 4px 12px rgba(0,0,0,0.3); max-height: 80vh; overflow-y: auto;">
                                     <h2 style="margin-top:0; font-size: 1.5rem;">Programme, Course and Activity Summary Report</h2>
                                     <p style="font-size: 1rem; margin-bottom: 1rem;"><strong>Selected Programme:</strong> {{$programme->title}} ({{$programme->base_code}})</p>

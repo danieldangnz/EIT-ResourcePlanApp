@@ -35,17 +35,17 @@
         <tbody>
             @foreach($staffmem as $staff)
                 <tr>
-                    <td>{{ $staff->staff_name }}</td>
-                    <td>{{ $staff->staff_code }}</td>
+                    <td>{{$staff->staff_name}}</td>
+                    <td>{{$staff->staff_code}}</td>
                     <td>
-                        <form action="{{ route('staff.delete', $staff->id) }}" method="POST">
+                        <form action="{{route('staff.delete', $staff->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button class="deleteBtn">Delete</button>
                         </form>
                     </td>
                     <td>
-                        <a href="{{ route('staff.edit', $staff->id) }}">
+                        <a href="{{route('staff.edit', $staff->id)}}">
                             <button class="editBtn">Edit</button>
                         </a>
                     </td>

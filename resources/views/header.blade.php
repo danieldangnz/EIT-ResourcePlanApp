@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{str_replace('_', '-', app()->getLocale())}}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,7 +14,7 @@
         <a href="#" class="headerBtn">Email</a>
 
         @auth
-        <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+        <form action="{{route('logout')}}" method="POST" style="display:inline;">
             @csrf
             <button type="submit" class="headerBtn">Logout</button>
         </form>

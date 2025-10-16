@@ -27,11 +27,11 @@ Route::get('/programmes/{programme}/edit', [ProgrammeController::class, 'edit'])
 Route::put('/programmes/{programme}', [ProgrammeController::class, 'update'])->name('programmes.update');
 Route::delete('/programmes/{programme}', [ProgrammeController::class, 'delete'])->name('programmes.delete');
 
-Route::get('/staff', [staffController::class, 'index'])->name('staffmem');
-Route::post('/staff', [staffController::class, 'store'])->name('staff.store');
-Route::get('/staff/{staffmem}/edit', [staffController::class, 'edit'])->name('staff.edit');
-Route::put('/staff/{staffmem}', [staffController::class, 'update'])->name('staff.update');
-Route::delete('/staff/{staffmem}', [staffController::class, 'delete'])->name('staff.delete');
+Route::get('/staff', [StaffController::class, 'index'])->name('staffmem');
+Route::post('/staff', [StaffController::class, 'store'])->name('staff.store');
+Route::get('/staff/{staffmem}/edit', [StaffController::class, 'edit'])->name('staff.edit');
+Route::put('/staff/{staffmem}', [StaffController::class, 'update'])->name('staff.update');
+Route::delete('/staff/{staffmem}', [StaffController::class, 'delete'])->name('staff.delete');
 
 Route::get('/activities', [ActivityController::class, 'index'])->name('activities');
 Route::post('/activities/store', [ActivityController::class, 'store'])->name('activities.store');

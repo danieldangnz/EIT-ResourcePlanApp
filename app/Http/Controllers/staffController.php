@@ -14,14 +14,12 @@ class StaffController extends Controller {
             ->when($query, function ($q, $query) {
                 return $q->where('staff_name', 'like', "%{$query}%")
                         ->orWhere('staff_code', 'like', "%{$query}%");
-            })
-            ->get();
+            })->get();
 
         return view('staff', compact('staffmem'));
     }
 
     public function store(Request $request) {
-        // Validate incoming data
         $validated = $request->validate([
             'staff_name' => 'required|string|max:50',
             'staff_code' => 'required|string|max:10',
