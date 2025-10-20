@@ -1,26 +1,29 @@
 <?php
 
 namespace App\Models;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Course extends Model {
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Course extends Model
+{
     use HasFactory;
 
     protected $fillable = [
         'programme_id',
-        'courseDescription',
-        'courseCode',
-        'courseFullCode',
-        'onlyOneCourseForProgramme',
-        'status',
+        'title',
+        'base_code',
+        'campus_id',
+        'intake'
     ];
 
-    public function programme() {
-        return $this->belongsTo(Programme::class);
+    public function campus()
+    {
+        return $this->belongsTo(Campus::class);
     }
 
-    public function activities() {
-        return $this->hasMany(Activity::class);
+    public function programme()
+    {
+        return $this->belongsTo(Programme::class);
     }
 }

@@ -41,9 +41,13 @@ Route::put('/activities/update/{id}', [ActivityController::class, 'update'])->na
 
 Route::get('/reports', [ReportController::class, 'index'])->name('reports');
 
+
 Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
+Route::get('/courses/programme/{programmeId}', [CourseController::class, 'indexByProgramme'])->name('courses.index.programme');
 Route::post('/courses', [CourseController::class, 'store'])->name('courses.store');
-Route::get('/courses/{id}/edit', [CourseController::class, 'edit'])->name('courses.edit');
+Route::get('/courses/{course}/edit', [CourseController::class, 'edit'])->name('courses.edit');
 Route::put('/courses/{course}', [CourseController::class, 'update'])->name('courses.update');
 Route::delete('/courses/{course}', [CourseController::class, 'destroy'])->name('courses.destroy');
+
+
 

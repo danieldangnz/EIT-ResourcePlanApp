@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             ActivitySeeder::class,
             StaffSeeder::class,
             SectionSeeder::class,
+            CoursesTableSeeder::class,
         ]);
     }
 }

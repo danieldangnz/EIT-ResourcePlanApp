@@ -2,59 +2,84 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Programme;
 use App\Models\Course;
+use App\Models\Campus;
+use App\Models\Intake;
+use Illuminate\Http\Request;
 
-class CourseController extends Controller {
-    public function index() {
+class CourseController extends Controller
+{
+    // List all courses
+    public function index()
+    {
+        $courses = Course::with(['campus', 'programme'])->get();
+        $campuses = Campus::all();
         $programmes = Programme::all();
-        $courses = Course::with('programme')->get();
-        return view('courses', compact('programmes', 'courses'));
+        $intakes = Intake::all();
+        $programme = null;
+
+        return view('courses', compact('courses', 'campuses', 'programmes', 'intakes', 'programme'));
     }
 
-    public function edit($id) {
-        $course = Course::findOrFail($id);
+    // List courses filtered by a specific programme
+    public function indexByProgramme($programmeId) {
+        $programme = Programme::findOrFail($programmeId);
+
+        // Only courses that belong to this programme
+        $courses = Course::with(['campus', 'programme'])
+                        ->where('programme_id', $programme->id)
+                        ->get();
+
+        $campuses = Campus::all();
         $programmes = Programme::all();
+        $intakes = Intake::all();
 
-        // Use your file name directly
-        return view('courses-edit', compact('course', 'programmes'));
+        return view('courses', compact('courses', 'campuses', 'programmes', 'intakes', 'programme'));
     }
 
-    public function store(Request $request) {
-        $validated = $request->validate([
-            'programme_id' => 'required|exists:programmes,id',
-            'courseDescription' => 'required|string|max:500',
-            'courseCode' => 'required|string|max:50',
-            'courseFullCode' => 'required|string|max:50',
-            'onlyOneCourseForProgramme' => 'nullable|boolean',
-            'status' => 'required|in:working,completed',
-        ]);
+    public function edit(Course $course) {
+        $campuses = Campus::all();
+        $programmes = Programme::all();
+        $intakes = Intake::all();
 
-        $validated['onlyOneCourseForProgramme'] = $request->has('onlyOneCourseForProgramme');
-        Course::create($validated);
-
-        return redirect()->route('courses.index')->with('success', 'Course successfully added.');
+        return view('courses-edit', compact('course', 'campuses', 'programmes', 'intakes'));
     }
 
+    // Update course
     public function update(Request $request, Course $course) {
-        $validated = $request->validate([
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'base_code' => 'required|string|max:20',
+            'campus_id' => 'required|exists:campuses,id',
+            'intake' => 'required|string|max:10',
             'programme_id' => 'required|exists:programmes,id',
-            'courseDescription' => 'required|string|max:500',
-            'courseCode' => 'required|string|max:50',
-            'courseFullCode' => 'required|string|max:50',
-            'onlyOneCourseForProgramme' => 'nullable|boolean',
-            'status' => 'required|in:working,completed',
         ]);
 
-        $validated['onlyOneCourseForProgramme'] = $request->has('onlyOneCourseForProgramme');
+        $course->update($request->only('title','base_code','campus_id','intake','programme_id'));
 
-        $course->update($validated);
-        return redirect()->route('courses.index')->with('success', 'Course successfully updated.');
+        return redirect()->back()->with('success', 'Course updated successfully!');
     }
 
-    public function destroy(Course $course) {
+    // Store new course
+    public function store(Request $request) {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'base_code' => 'required|string|max:20',
+            'campus_id' => 'required|exists:campuses,id',
+            'intake' => 'required|string|max:10',
+            'programme_id' => 'required|exists:programmes,id',
+        ]);
+
+        Course::create($request->only('title','base_code','campus_id','intake','programme_id'));
+
+        return back()->with('success', 'Course added successfully!');
+    }
+
+    // Delete course
+    public function destroy(Course $course)
+    {
         $course->delete();
-        return redirect()->route('courses.index')->with('success', 'Course successfully deleted.');
+        return back()->with('success', 'Course deleted successfully!');
     }
 }

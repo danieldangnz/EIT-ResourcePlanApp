@@ -9,7 +9,7 @@ class SectionSeeder extends Seeder
 {
     public function run(): void
     {
-        DB::table('sections')->insert([
+        DB::table('sections')->insertOrIgnore([
             ['SectionID' => 2, 'SectionCode' => 'BRU', 'Section' => 'Business Relationship Unit'],
             ['SectionID' => 3, 'SectionCode' => 'Business', 'Section' => 'School of Business'],
             ['SectionID' => 4, 'SectionCode' => 'Comput', 'Section' => 'School of Computing'],

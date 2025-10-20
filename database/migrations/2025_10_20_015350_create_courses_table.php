@@ -9,14 +9,15 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('programmes', function (Blueprint $table) {
+        Schema::create('courses', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('programme_id')->constrained()->onDelete('cascade');
             $table->string('title');
-            $table->string('base_code', 10);
-            $table->string('region', 3);
-            $table->string('start_month', 20);
+            $table->string('base_code');
+            $table->foreignId('campus_id')->constrained('campus');
+            $table->string('intake');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('programmes');
+        Schema::dropIfExists('courses');
     }
 };

@@ -22,11 +22,11 @@ class Programme extends Model
         'prog1_code',
     ];
 
-    public function courses() {
-        return $this->hasMany(Course::class);
-    }
-
     public function section() {
         return $this->belongsTo(Section::class, 'section_id', 'SectionID');
+    }
+
+    public function courses() {
+        return $this->hasMany(Course::class);
     }
 }

@@ -115,7 +115,6 @@ main {
     overflow: auto;
 }
 
-
 footer {
     background: #1f2937;
     color: #d1d5db;
@@ -134,13 +133,13 @@ footer {
 
 .searchbar {
     padding: 0.5rem;
-    width: 300px; 
+    width: 300px;
     border-radius: 6px;
     border: 1px solid #cccccc;
 }
 
 .searchBtn {
-    padding: 0.5rem 1rem; 
+    padding: 0.5rem 1rem;
     border-radius: 6px;
     border: none;
     background-color: #2563EB;
@@ -195,6 +194,11 @@ footer {
     font-weight: bold;
     cursor: pointer;
     transition: transform 0.1s, opacity 0.2s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    font-family: inherit;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .programmesTable .deleteBtn {
@@ -222,5 +226,96 @@ footer {
 
 .programmesTable td form button, .programmesTable td a button {
     margin: -0.5rem;
+}
+
+.addCourseBtn {
+    padding: 0.4rem 0.8rem;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.1s, opacity 0.2s;
     box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    font-family: inherit;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2563eb;
+}
+
+.addCourseBtn:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 100px);
+    margin-left: 220px;
+    padding: 0 40px;
+    box-sizing: border-box;
+    gap: 60px;
+}
+
+.auth-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 25px;
+    width: 350px;
+}
+
+.auth-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #1f2937;
+    font-size: 2.2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.auth-form {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.auth-form h2 {
+    margin-bottom: 10px;
+    color: #1f2937;
+    font-size: 1.25rem;
+}
+
+.auth-form input {
+    width: 100%;
+    margin: 6px 0;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+.auth-form button {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: background 0.2s;
+    margin-bottom: 3rem;
+}
+
+.auth-form button:hover {
+    background: #1d4ed8;
 }
