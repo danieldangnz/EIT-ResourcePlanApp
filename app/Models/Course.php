@@ -26,4 +26,9 @@ class Course extends Model
     {
         return $this->belongsTo(Programme::class);
     }
+
+    public function activities()
+    {
+        return $this->hasMany(Activity::class);
+    }
 }
