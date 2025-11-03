@@ -10,16 +10,10 @@ class Programme extends Model
     use HasFactory;
 
     protected $fillable = [
-        'section_id',
         'title',
         'base_code',
         'region',
-        'intake',
-        'full_prog_code',
-        'campus',
-        'full_desc',
-        'prog_stud_set',
-        'prog1_code',
+        'start_month',
     ];
 
     public function section() {

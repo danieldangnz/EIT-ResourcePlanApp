@@ -10,48 +10,43 @@ use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
-    // List all courses
-    public function index()
-    {
+    public function index() {
         $courses = Course::with(['campus', 'programme'])->get();
-        $campuses = Campus::all();
+        $campus = Campus::all();
         $programmes = Programme::all();
         $intakes = Intake::all();
         $programme = null;
 
-        return view('courses', compact('courses', 'campuses', 'programmes', 'intakes', 'programme'));
+        return view('courses', compact('courses', 'campus', 'programmes', 'intakes', 'programme'));
     }
 
-    // List courses filtered by a specific programme
     public function indexByProgramme($programmeId) {
         $programme = Programme::findOrFail($programmeId);
 
-        // Only courses that belong to this programme
         $courses = Course::with(['campus', 'programme'])
                         ->where('programme_id', $programme->id)
                         ->get();
 
-        $campuses = Campus::all();
+        $campus = Campus::all();
         $programmes = Programme::all();
         $intakes = Intake::all();
 
-        return view('courses', compact('courses', 'campuses', 'programmes', 'intakes', 'programme'));
+        return view('courses', compact('courses', 'campus', 'programmes', 'intakes', 'programme'));
     }
 
     public function edit(Course $course) {
-        $campuses = Campus::all();
+        $campus = Campus::all();
         $programmes = Programme::all();
         $intakes = Intake::all();
 
-        return view('courses-edit', compact('course', 'campuses', 'programmes', 'intakes'));
+        return view('courses-edit', compact('course', 'campus', 'programmes', 'intakes'));
     }
 
-    // Update course
     public function update(Request $request, Course $course) {
         $request->validate([
             'title' => 'required|string|max:255',
             'base_code' => 'required|string|max:20',
-            'campus_id' => 'required|exists:campuses,id',
+            'campus_id' => 'required|exists:campus,id',
             'intake' => 'required|string|max:10',
             'programme_id' => 'required|exists:programmes,id',
         ]);
@@ -61,12 +56,11 @@ class CourseController extends Controller
         return redirect()->back()->with('success', 'Course updated successfully!');
     }
 
-    // Store new course
     public function store(Request $request) {
         $request->validate([
             'title' => 'required|string|max:255',
             'base_code' => 'required|string|max:20',
-            'campus_id' => 'required|exists:campuses,id',
+            'campus_id' => 'required|exists:campus,id',
             'intake' => 'required|string|max:10',
             'programme_id' => 'required|exists:programmes,id',
         ]);
@@ -76,9 +70,7 @@ class CourseController extends Controller
         return back()->with('success', 'Course added successfully!');
     }
 
-    // Delete course
-    public function destroy(Course $course)
-    {
+    public function destroy(Course $course) {
         $course->delete();
         return back()->with('success', 'Course deleted successfully!');
     }

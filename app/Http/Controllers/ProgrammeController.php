@@ -43,34 +43,39 @@ class ProgrammeController extends Controller
         }
     }
 
-    public function delete($id)
-    {
+    public function delete($id) {
         $programme = Programme::findOrFail($id);
         $programme->delete();
 
         return redirect()->back()->with('success', 'Programme deleted successfully!');
     }
 
-    public function edit($id)
-    {
+    public function edit($id) {
         $programme = Programme::findOrFail($id);
         $sections = Section::all();
-        return view('programmes-edit', compact('programme', 'sections'));
+        $campuses = Campus::all();
+        $intakes = Intake::all();
+
+        return view('programmes-edit', compact('programme', 'sections', 'campuses', 'intakes'));
     }
 
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'title' => 'required|string|max:100',
-            'base_code' => 'required|string|max:10',
-            'region' => 'nullable|string|max:3',
-            'start_month' => 'nullable|string|max:20',
-            'section_id' => 'required|exists:sections,id',
-        ]);
+    public function update(Request $request, $id) {
+    $request->validate([
+        'title'       => 'required|string|max:100',
+        'base_code'   => 'required|string|max:10',
+        'region'      => 'required|string|max:10',
+        'start_month' => 'required|string|max:20',
+    ]);
 
-        $programme = Programme::findOrFail($id);
-        $programme->update($request->all());
+    $programme = Programme::findOrFail($id);
 
-        return redirect()->route('programmes')->with('success', 'Updated successfully');
-    }
+    $programme->update([
+        'title'       => $request->title,
+        'base_code'   => $request->base_code,
+        'region'      => $request->region,
+        'intake'      => $request->intake,
+    ]);
+
+    return redirect()->route('programmes')->with('success', 'Programme updated successfully!');
+}
 }

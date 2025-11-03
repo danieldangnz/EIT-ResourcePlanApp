@@ -41,7 +41,7 @@
 
                 <select name="campus_id" required style="width:100%; margin-bottom:1rem; padding:0.5rem;">
                     <option value="">-- Choose Campus --</option>
-                    @foreach($campuses as $campus)
+                    @foreach($campus as $campus)
                         <option value="{{$campus->id}}">{{$campus->CampusName}}</option>
                     @endforeach
                 </select>
@@ -70,7 +70,7 @@
     </div>
 
     @if(session('success'))
-        <p style="color:green; margin-bottom:1rem;">{{ session('success') }}</p>
+        <p style="color:green; margin-bottom:1rem;">{{session('success')}}</p>
     @endif
 
     <!-- Existing Courses Table -->
