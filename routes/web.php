@@ -34,13 +34,13 @@ Route::put('/staff/{staffmem}', [StaffController::class, 'update'])->name('staff
 Route::delete('/staff/{staffmem}', [StaffController::class, 'delete'])->name('staff.delete');
 
 Route::get('/activities', [ActivityController::class, 'index'])->name('activities');
+Route::get('/activities/course/{courseId}', [ActivityController::class, 'indexByCourse'])->name('activities.course');
 Route::post('/activities/store', [ActivityController::class, 'store'])->name('activities.store');
 Route::delete('/activities/delete/{id}', [ActivityController::class, 'delete'])->name('activities.delete');
 Route::get('/activities/edit/{id}', [ActivityController::class, 'edit'])->name('activities.edit');
 Route::put('/activities/update/{id}', [ActivityController::class, 'update'])->name('activities.update');
 
 Route::get('/reports', [ReportController::class, 'index'])->name('reports');
-
 
 Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
 Route::get('/courses/programme/{programmeId}', [CourseController::class, 'indexByProgramme'])->name('courses.index.programme');

@@ -15,6 +15,7 @@ class Activity extends Model
         'campus',
         'intake_month',
         'for_programme',
+        'course_id',
     ];
 
     public function course() {

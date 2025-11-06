@@ -85,6 +85,7 @@
                 @if(!isset($programme))<th>Programme</th>@endif
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -105,6 +106,11 @@
                     <td>
                         <a href="{{route('courses.edit', $course->id)}}">
                             <button class="editBtn">Edit</button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ route('activities.course', $course->id) }}">
+                            <button class="editBtn">See Activities</button>
                         </a>
                     </td>
                 </tr>
